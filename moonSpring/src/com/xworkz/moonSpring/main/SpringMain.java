@@ -170,8 +170,27 @@ public class SpringMain {
 		String num10=annotation.getBean("ten",String.class);
 		System.out.println(num10.hashCode());
 		
-		String num11=annotation.getBean("eleven",String.class);
-		System.out.println(num11.hashCode());
+		//String num11=annotation.getBean("eleven",String.class);
+		System.out.println(annotation.getBean("eleven",String.class).hashCode());
+		System.out.println(annotation.getBean("twelve",Integer.class).hashCode());
+		System.out.println(annotation.getBean("thirteen",Integer.class).hashCode());
+		System.out.println(annotation.getBean("fourteen",Integer.class).hashCode());
+		System.out.println(annotation.getBean("fifteen",Integer.class).hashCode());
+		System.out.println(annotation.getBean("sixteen",Integer.class).hashCode());
+		System.out.println(annotation.getBean("seventeen",Integer.class).hashCode());
+		System.out.println(annotation.getBean("eighteen",Integer.class).hashCode());
+		System.out.println(annotation.getBean("ninghteen",Integer.class).hashCode());
+		System.out.println(annotation.getBean("twenty",Integer.class).hashCode());
+		System.out.println(annotation.getBean("twentyOne",Integer.class).hashCode());
+		System.out.println(annotation.getBean("twentytwo",Integer.class).hashCode());
+		System.out.println(annotation.getBean("twentyThree",Integer.class).hashCode());
+		System.out.println(annotation.getBean("twentyFour",Integer.class).hashCode());
+		System.out.println(annotation.getBean("twentyFive",Integer.class).hashCode());
+		System.out.println(annotation.getBean("twentySix",Integer.class).hashCode());
+		System.out.println(annotation.getBean("twentySeven",Integer.class).hashCode());
+		System.out.println(annotation.getBean("twentyeight",Integer.class).hashCode());
+		System.out.println(annotation.getBean("twentynine",Integer.class).hashCode());
+		System.out.println(annotation.getBean("thirty",Integer.class).hashCode());
 		
 		
 	}
