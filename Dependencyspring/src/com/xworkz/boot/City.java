@@ -9,12 +9,22 @@ public class City {
 	private String name;
 	@Value("true")
 	private boolean capital;
+
+	public City() {
+		System.out.println("city");
+	}
 	
+	public City(String name, boolean capital) {
+		super();
+		this.name = name;
+		this.capital = capital;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "City [name=" + name + ", capital=" + capital + "]";
 	}
-	
-	
 
 }

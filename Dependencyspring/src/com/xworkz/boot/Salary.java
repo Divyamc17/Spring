@@ -15,10 +15,26 @@ public class Salary {
 	private double bonus;
 @Value("2500")
 	private double hra;
-@Value("2500")
+@Value("true")
 	private boolean ot;
-@Value("1000")
+@Value("true")
 	private boolean variable;
+
+
+/*public Salary(double grossSalary, double netSalary, double pf, double bonus, double hra, boolean ot, boolean variable) {
+	super();
+	this.grossSalary = grossSalary;
+	this.netSalary = netSalary;
+	this.pf = pf;
+	this.bonus = bonus;
+	this.hra = hra;
+	this.ot = ot;
+	this.variable = variable;
+}*/
+/*public Salary() {
+	System.out.println("salary");
+}*/
+
 @Override
 public String toString() {
 	return "Salary [grossSalary=" + grossSalary + ", netSalary=" + netSalary + ", pf=" + pf + ", bonus=" + bonus

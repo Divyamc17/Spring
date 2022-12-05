@@ -23,6 +23,23 @@ public class Education {
 	@Value("True")
 	private boolean passed;
 	
+	public Education() {
+		System.out.println("education");
+	}
+	public Education(String id, String university, String branch, int year, String place, boolean backlogs,
+			double percentage, boolean passed) {
+		super();
+		this.id = id;
+		this.university = university;
+		this.branch = branch;
+		this.year = year;
+		this.place = place;
+		this.backlogs = backlogs;
+		this.percentage = percentage;
+		this.passed = passed;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Education [id=" + id + ", university=" + university + ", branch=" + branch + ", year=" + year

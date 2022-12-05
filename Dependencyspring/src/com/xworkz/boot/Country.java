@@ -7,25 +7,36 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Country {
-	@Autowired
-	private Name name;
+	@Value("India")
+	private String name;
 	@Autowired
 	private President president;
 	@Autowired
 	private VicePresident vicePresident;
 	@Autowired
-	private PrimeMinister primeMinister ;
+	private PrimeMinister primeMinister;
 	@Value("1451223")
 	private double armySize;
-    @Value("Democratic")
+	@Value("Democratic")
 	private String type;
-    @Autowired
-    @Qualifier("state")
-	private State state;
-    @Autowired
+	@Autowired
+	// @Qualifier("state")
+	private States states;
+	@Autowired
 	private UnionTerritory unionTerritory;
-    @Autowired
+	@Autowired
 	private City capitalCity;
+
 	
-   
+
+	@Override
+	public String toString() {
+		return "Country [name=" + name + ", president=" + president + ", vicePresident=" + vicePresident
+				+ ", primeMinister=" + primeMinister + ", armySize=" + armySize + ", type=" + type + ", states="
+				+ states + ", unionTerritory=" + unionTerritory + ", capitalCity=" + capitalCity + "]";
+	}
+
+	
+
+	
 }

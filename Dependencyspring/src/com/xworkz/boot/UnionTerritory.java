@@ -12,6 +12,19 @@ public class UnionTerritory {
 	private String governorName;
 	@Value("5000000")
 	private double population;
+	
+	public UnionTerritory() {
+		System.out.println("territory");
+	}
+	public UnionTerritory(String name, String area, String governorName, double population) {
+		super();
+		this.name = name;
+		this.area = area;
+		this.governorName = governorName;
+		this.population = population;
+	}
+
+
 	@Override
 	public String toString() {
 		return "UnionTerritory [name=" + name + ", area=" + area + ", governorName=" + governorName + ", population="
