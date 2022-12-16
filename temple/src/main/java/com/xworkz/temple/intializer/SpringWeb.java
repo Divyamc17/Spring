@@ -8,7 +8,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import com.xworkz.temple.config.SpringConfigure;
 
 
-@Component
+
 public class SpringWeb extends AbstractAnnotationConfigDispatcherServletInitializer
 implements WebMvcConfigurer{
 
