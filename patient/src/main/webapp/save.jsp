@@ -58,6 +58,7 @@ body {
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
+					<th scope="col">Image</th>
 					<th scope="col">Name</th>
 					<th scope="col">Email</th>
 					<th scope="col">Age</th>
@@ -71,6 +72,7 @@ body {
 			<tbody>
 				<tr>
 					<th scope="row">${entity.id}</th>
+					<td><img alt="Nothing" src="send/files/${entity.fileName}" width="100" height="150"> </td>
 					<td>${entity.name}</td>
 					<td>${entity.email}</td>
 					<td>${entity.age}</td>

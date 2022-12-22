@@ -89,7 +89,7 @@ public class PatientRepositoryImpl implements PatientRepository {
 	@Override
 	public List<PatientEntity> findByMobileNo(long mobileNo) {
 		EntityManager manager = factory.createEntityManager();
-		Query query = manager.createNamedQuery("findByEmail");
+		Query query = manager.createNamedQuery("findByMobileNo");
 		query.setParameter("mb", mobileNo);
 		List resultList = query.getResultList();
 		if (resultList.isEmpty()) {

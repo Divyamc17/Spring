@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -20,11 +21,11 @@ import lombok.NonNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PatientEntity")
+@Table(name = "PatientEntity_db")
 //SELECT * from patiententity where name='divya' or age>20 and age<50;
 @NamedQuery(name = "findByNameOrAgeGreatherThanOrAgeLesserThan", query = "select patient from PatientEntity patient where patient.name=:nm or (patient.age >=:ag and patient.age<=:ae)")
 @NamedQuery(name = "findByEmail", query = "select patient from PatientEntity patient where patient.email=:em")
-@NamedQuery(name = "findByEmail", query = "select patient from PatientEntity patient where patient.mobileNo=:mb")
+@NamedQuery(name = "findByMobileNo", query = "select patient from PatientEntity patient where patient.mobileNo=:mb")
 public class PatientEntity extends AbstractDTO{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +41,8 @@ public class PatientEntity extends AbstractDTO{
 	private String idCard;
 	private boolean bplCard;
 	private boolean insurence;
+	@Transient
+	private String fileName;
 
 	public PatientEntity(String name, String email, int age, long mobileNo, String gender, String idCard,
 			boolean bplCard, boolean insurence) {

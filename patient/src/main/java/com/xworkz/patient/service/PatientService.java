@@ -7,7 +7,7 @@ import com.xworkz.patient.entity.PatientEntity;
 
 public interface PatientService {
 
-	boolean validateAndSave(PatientEntity entity);
+	String validateAndSave(PatientEntity entity);
 
 	default Optional<List<PatientEntity>> findByName(String name, int greaterThanAge, int lesserThanAge) {
 		return Optional.empty();

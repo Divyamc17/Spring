@@ -23,7 +23,8 @@ public class PatientServiceImpl implements PatientService {
 	private PatientRepository repo;
 
 	@Override
-	public boolean validateAndSave(PatientEntity entity) {
+	public String validateAndSave(PatientEntity entity) {
+		String message = "";
 		System.out.println("patient in PatientServiceImpl");
 		ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 		Validator validator = validatorFactory.getValidator();
@@ -32,11 +33,21 @@ public class PatientServiceImpl implements PatientService {
 			System.out.println("size is fixed");
 		} else {
 			System.out.println("validated");
+			boolean email = this.findByEmail(entity.getEmail());
+			boolean mobile = this.findByMobileNo(entity.getMobileNo());
+			if (email && mobile) {
+				entity.setCreatedBy(entity.getName());
+				entity.setLocalDateTime(LocalDateTime.now());
+				boolean saved = this.repo.save(entity);
+				if (saved) {
+					message = "success";
+				} else {
+					message = "failed";
+				}
+			}
 		}
 
-		entity.setCreatedBy(entity.getName());
-		entity.setLocalDateTime(LocalDateTime.now());
-		return this.repo.save(entity);
+		return message;
 	}
 
 	@Override
@@ -60,22 +71,22 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	public boolean findByEmail(String email) {
 		List<PatientEntity> findByEmail = repo.findByEmail(email);
-		if(findByEmail!=null) {
+		if (findByEmail != null) {
 			return false;
-		}else {
+		} else {
 			return true;
 		}
-		
+
 	}
 
 	@Override
 	public boolean findByMobileNo(long mobileNo) {
 		List<PatientEntity> findByMobileNo = repo.findByMobileNo(mobileNo);
-		if(findByMobileNo!=null) {
+		if (findByMobileNo != null) {
 			return false;
-		}else {
+		} else {
 			return true;
 		}
-		
+
 	}
 }

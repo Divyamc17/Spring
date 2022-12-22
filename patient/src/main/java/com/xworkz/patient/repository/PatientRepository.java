@@ -16,8 +16,7 @@ public interface PatientRepository {
 	default Optional<List<PatientEntity>> findByName(String name, int greaterThanAge, int lesserThanAge) {
 		return Optional.empty();
 	}
-	// Optional<List<PatientEntity>> findByName(String string, Object[] array,
-	// Object[] array2);
+	
 
 	List<PatientEntity> findByEmail(String email);
 

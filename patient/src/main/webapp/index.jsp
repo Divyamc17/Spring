@@ -40,6 +40,8 @@ label {
 
 	<p Class="text-success">${message }</p>
 	<p Class="text-danger">${error}</p>
+	<p Class="text-danger">${error1 }</p>
+	<p Class="text-danger">${error2}</p>
 
 	<form action="send" method="post" enctype="multipart/form-data">
 		<div>
