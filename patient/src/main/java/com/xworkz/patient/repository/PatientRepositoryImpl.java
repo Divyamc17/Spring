@@ -38,29 +38,30 @@ public class PatientRepositoryImpl implements PatientRepository {
 		return true;
 	}
 
-	@Override
-	public Optional<List<PatientEntity>> findByName(String name, int greaterThanAge, int lesserThanAge) {
-		EntityManager manager = factory.createEntityManager();
-		try {
-			Query query = manager.createNamedQuery("findByNameOrAgeGreatherThanOrAgeLesserThan");
-			query.setParameter("nm", name);
-			query.setParameter("ag", greaterThanAge);
-			query.setParameter("ae", lesserThanAge);
-			return Optional.ofNullable(query.getResultList());
-		} catch (PersistenceException e) {
-			e.getMessage();
-		} finally {
-			manager.close();
-		}
-		return PatientRepository.super.findByName(name, greaterThanAge, lesserThanAge);
-	}
+	/*
+	 * @Override public Optional<List<PatientEntity>> findByName(String name, int
+	 * greaterThanAge, int lesserThanAge) { EntityManager manager =
+	 * factory.createEntityManager(); try { Query query =
+	 * manager.createNamedQuery("findByNameOrAgeGreatherThanOrAgeLesserThan");
+	 * query.setParameter("nm", name); query.setParameter("ag", greaterThanAge);
+	 * query.setParameter("ae", lesserThanAge); return
+	 * Optional.ofNullable(query.getResultList()); } catch (PersistenceException e)
+	 * { e.getMessage(); } finally { manager.close(); } return
+	 * PatientRepository.super.findByName(name, greaterThanAge, lesserThanAge); }
+	 */
 
-// Query or Criteria 
+	// messages : Code--> Stuck
 	public Optional<List<PatientEntity>> findByQuery(String query) {
 		EntityManager manager = factory.createEntityManager();
+		System.out.println("execute findByQuery..");
 		try {
 			Query jql = manager.createQuery(query);// String
-			return Optional.ofNullable(jql.getResultList());
+			System.out.println("query executed..");
+			List list = jql.getResultList();
+			if (list != null) {
+				System.out.println("List from DB " + list + " total rows found :" + list.size());
+			}
+			return Optional.ofNullable(list);
 		} catch (PersistenceException e) {
 			e.getMessage();
 		} finally {

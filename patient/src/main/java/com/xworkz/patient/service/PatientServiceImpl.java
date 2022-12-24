@@ -68,6 +68,8 @@ public class PatientServiceImpl implements PatientService {
 		return this.repo.findByQuery(query.toString());
 	}
 
+	
+
 	@Override
 	public boolean findByEmail(String email) {
 		List<PatientEntity> findByEmail = repo.findByEmail(email);

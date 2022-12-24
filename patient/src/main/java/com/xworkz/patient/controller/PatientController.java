@@ -35,31 +35,35 @@ public class PatientController {
 	@PostMapping
 	public String onSend(PatientEntity entity, Model model, @RequestParam MultipartFile image) {
 		System.out.println("executing the onSend method");
-		String service = this.service.validateAndSave(entity);
-		if (service.equals("success")) {
-			model.addAttribute("message", "Patient Deatils Saved Sucessfully...");
-			System.out.println("saving the data" + entity);
-			if (image != null) {
-				// Get the file and save it somewhere
-				byte[] bytes;
-				System.out.println("File original name" + image.getOriginalFilename());
-				System.out.println("File size" + image.getSize());
-				System.out.println("File type" + image.getContentType());
-				String fileName=System.currentTimeMillis() + "_" + image.getOriginalFilename();
-				try {
-					bytes = image.getBytes();
-					Path path = Paths
-							.get("D:\\app-images\\" +fileName );
-					Files.write(path, bytes);
-					entity.setFileName(fileName);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		if (image != null) {
+			// Get the file and save it somewhere
+			byte[] bytes;
+			System.out.println("File original name" + image.getOriginalFilename());
+			System.out.println("File size" + image.getSize());
+			System.out.println("File type" + image.getContentType());
+			String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
+			try {
+				bytes = image.getBytes();
+				Path path = Paths.get("D:\\app-images\\" + fileName);
+				Files.write(path, bytes);
+				entity.setFileName(fileName);
+				entity.setFileSize(image.getSize());
+				// entity.setFileType(image.getContentType());
+				entity.setContentType(image.getContentType());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			String service = this.service.validateAndSave(entity);
+			if (service.equals("success")) {
+				model.addAttribute("message", "Patient Deatils Saved Sucessfully...");
+				System.out.println("saving the data" + entity);
 				model.addAttribute("entity", entity);
 			}
 			return "save";
 		} else {
 			model.addAttribute("error", "Patient Deatils not saved");
+			model.addAttribute("error1", "Duplicate mail id or mobile number");
 			model.addAttribute("entity", entity);
 		}
 
@@ -84,24 +88,25 @@ public class PatientController {
 		}
 		return "Search";
 	}
-	
-	
+
 	@GetMapping(value = "/files/{file_name}")
-	//@ResponseBody 
-	public void getFile(@PathVariable("file_name") String fileName,HttpServletResponse response) throws IOException {
-		System.out.println("File name is "+fileName);
-		//do other stuff
-		Path path = Paths
-				.get("D:\\app-images\\" +fileName);
-	    byte[] file = Files.readAllBytes(path);
-	    response.reset();
-	    //response.setBufferSize(DEFAULT_BUFFER_SIZE);
-	    response.setContentType("image/jpg"); //or whatever file type you want to send. 
-	    try {
-	        response.getOutputStream().write(file);
-	    } catch (IOException e) {
-	        // Do something
-	    	e.printStackTrace();
-	    }
+	// @ResponseBody
+	public void getFile(@PathVariable("file_name") String fileName, @RequestParam String contentType,
+			HttpServletResponse response) throws IOException {
+		System.out.println("File name is " + fileName);
+		// do other stuff
+		if (fileName != null && contentType != null) {
+			Path path = Paths.get("D:\\app-images\\" + fileName);
+			byte[] file = Files.readAllBytes(path);
+			response.reset();
+			// response.setBufferSize(DEFAULT_BUFFER_SIZE);
+			response.setContentType(contentType); // or whatever file type you want to send.
+			try {
+				response.getOutputStream().write(file);
+			} catch (IOException e) {
+				// Do something
+				e.printStackTrace();
+			}
+		}
 	}
 }
